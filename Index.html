@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hub Unir</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --laranja: #E8820C;
+      --roxo: #2E2A6E;
+      --cinza: #9A9A9A;
+      --cinza-claro: #F4F4F6;
+      --branco: #FFFFFF;
+      --card-hover-shadow: 0 20px 60px rgba(46,42,110,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0D0C1D;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND ── */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 10% 20%, rgba(46,42,110,0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(232,130,12,0.30) 0%, transparent 65%),
+        #0D0C1D;
+    }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* ── WRAPPER ── */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 0 0;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-img {
+      height: 64px;
+      filter: brightness(0) invert(1) opacity(0.95);
+      animation: fadeDown 0.7s ease both;
+    }
+
+    .divider-v {
+      width: 2px;
+      height: 40px;
+      background: rgba(255,255,255,0.15);
+      animation: fadeDown 0.7s 0.1s ease both;
+    }
+
+    .hub-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #fff;
+      animation: fadeDown 0.7s 0.15s ease both;
+    }
+    .hub-title span { color: var(--laranja); }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      animation: fadeDown 0.7s 0.2s ease both;
+    }
+    .badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--laranja);
+      box-shadow: 0 0 6px var(--laranja);
+      animation: pulse 2s infinite;
+    }
+
+    /* ── HERO TEXT ── */
+    .hero {
+      padding: 70px 0 56px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 640px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--laranja);
+    }
+    .hero p {
+      margin-top: 18px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .section-label span {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      animation: fadeUp 0.9s 0.5s ease both;
+    }
+
+    /* ── CARD ── */
+    .card {
+      position: relative;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 32px 28px 28px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: linear-gradient(135deg, rgba(232,130,12,0.08), rgba(46,42,110,0.12));
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--card-hover-shadow);
+      border-color: rgba(232,130,12,0.3);
+      background: rgba(255,255,255,0.07);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .card--coming {
+      cursor: default;
+      opacity: 0.45;
+    }
+    .card--coming:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+    .card--coming::before { display: none; }
+
+    .card-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      transition: transform 0.3s ease;
+    }
+    .card:hover .card-icon { transform: scale(1.1); }
+
+    .card-icon--diesel  { background: linear-gradient(135deg, #E8820C22, #E8820C55); }
+    .card-icon--ipk     { background: linear-gradient(135deg, #2E2A6E22, #2E2A6E55); }
+    .card-icon--dre     { background: linear-gradient(135deg, #1a6e4022, #1a6e4055); }
+    .card-icon--supply  { background: linear-gradient(135deg, #6e1a1a22, #6e1a1a55); }
+    .card-icon--rh      { background: linear-gradient(135deg, #1a4e6e22, #1a4e6e55); }
+    .card-icon--manut   { background: linear-gradient(135deg, #4e6e1a22, #4e6e1a55); }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+    .card-tag--live    { background: rgba(232,130,12,0.15); color: var(--laranja); }
+    .card-tag--soon    { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3); }
+
+    .card-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.5;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(232,130,12,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .card:not(.card--coming):hover .card-arrow {
+      background: var(--laranja);
+      transform: translate(3px, -3px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 72px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      animation: fadeUp 0.9s 0.6s ease both;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: 0.04em;
+    }
+    footer img {
+      height: 28px;
+      filter: brightness(0) invert(1) opacity(0.2);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity:0; transform: translateY(-16px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(20px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; }
+      50%      { opacity:0.35; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-area">
+      <img class="logo-img" src="LOGO_UNIR_5.png" alt="Logo Unir" />
+      <div class="divider-v"></div>
+      <div class="hub-title">Hub <span>Unir</span></div>
+    </div>
+    <div class="badge">Central de sistemas</div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Todos os seus sistemas,<br /><em>em um só lugar.</em></h1>
+    <p>Acesse rapidamente cada plataforma da Expresso Unir. Clique no sistema desejado para ser direcionado.</p>
+  </div>
+
+  <!-- CARDS ATIVOS -->
+  <div class="section-label">
+    <span>Sistemas disponíveis</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- Diesel -->
+    <a class="card" href="https://avlbelisario.github.io/Acompanhamento-Diesel-Unir/" target="_blank" rel="noopener">
+      <div class="card-icon card-icon--diesel">⛽</div>
+      <span class="card-tag card-tag--live">Ativo</span>
+      <div class="card-name">Diesel</div>
+      <div class="card-desc">Acompanhamento e controle de consumo de diesel da frota.</div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- IPK -->
+    <a class="card" href="https://avlbelisario.github.io/Expresso-Unir-IPK/" target="_blank" rel="noopener">
+      <div class="card-icon card-icon--ipk">📊</div>
+      <span class="card-tag card-tag--live">Ativo</span>
+      <div class="card-name">IPK</div>
+      <div class="card-desc">Índice de passageiros por quilômetro — análise de desempenho operacional.</div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- DRE -->
+    <div class="card card--coming">
+      <div class="card-icon card-icon--dre">📈</div>
+      <span class="card-tag card-tag--soon">Em breve</span>
+      <div class="card-name">DRE Ajustada</div>
+      <div class="card-desc">Demonstração de resultado do exercício com ajustes gerenciais.</div>
+    </div>
+
+    <!-- Suprimentos -->
+    <div class="card card--coming">
+      <div class="card-icon card-icon--supply">📦</div>
+      <span class="card-tag card-tag--soon">Em breve</span>
+      <div class="card-name">Suprimentos</div>
+      <div class="card-desc">Gestão de estoque, compras e controle de insumos.</div>
+    </div>
+
+    <!-- RH -->
+    <div class="card card--coming">
+      <div class="card-icon card-icon--rh">👥</div>
+      <span class="card-tag card-tag--soon">Em breve</span>
+      <div class="card-name">RH</div>
+      <div class="card-desc">Recursos humanos, folha de ponto e gestão de colaboradores.</div>
+    </div>
+
+    <!-- Manutenção -->
+    <div class="card card--coming">
+      <div class="card-icon card-icon--manut">🔧</div>
+      <span class="card-tag card-tag--soon">Em breve</span>
+      <div class="card-name">Manutenção</div>
+      <div class="card-desc">Ordens de serviço, preventiva e corretiva da frota.</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Expresso Unir · Hub de sistemas internos</p>
+    <img src="LOGO_UNIR_5.png" alt="Unir" />
+  </footer>
+
+</div>
+</body>
+</html>
