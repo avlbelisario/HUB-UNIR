@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --roxo:        #2E2A6E;
+      --roxo:        #3D3888;
       --laranja:     #E8820C;
       --cinza-bg:    #F4F4F8;
       --cinza-borda: #E2E2EA;
@@ -26,33 +26,29 @@
     }
 
     /* ══════════════════════════════
-       HERO ROXO — ocupa topo da tela
+       HERO ROXO
     ══════════════════════════════ */
     .hero {
       position: relative;
       background: var(--roxo);
-      padding: 0 48px 64px;
+      padding: 0 48px 52px;
       overflow: hidden;
     }
 
-    /* mapa de linhas dentro do hero */
     .hero-map {
       position: absolute;
       inset: 0;
       pointer-events: none;
     }
-    .hero-map svg {
-      width: 100%; height: 100%;
-    }
+    .hero-map svg { width: 100%; height: 100%; }
 
-    /* brilho laranja no canto */
     .hero::before {
       content: '';
       position: absolute;
       bottom: -80px; right: -80px;
-      width: 500px; height: 500px;
+      width: 420px; height: 420px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,130,12,0.22) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(232,130,12,0.2) 0%, transparent 65%);
       pointer-events: none;
     }
 
@@ -63,26 +59,26 @@
       margin: 0 auto;
     }
 
-    /* ── NAV dentro do hero ── */
+    /* ── NAV ── */
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 36px 0 52px;
+      padding: 32px 0 44px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
-      margin-bottom: 56px;
+      margin-bottom: 44px;
     }
 
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
     }
 
+    /* logo nas cores originais — fundo mais claro agora permite */
     .logo-area img {
-      height: 72px;
+      height: 64px;
       width: auto;
-      filter: brightness(0) invert(1);
     }
 
     .divider-v {
@@ -93,7 +89,7 @@
 
     .hub-name {
       font-family: 'Syne', sans-serif;
-      font-size: 2.4rem;
+      font-size: 3rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       color: #fff;
@@ -114,26 +110,26 @@
 
     /* ── TÍTULO HERO ── */
     .hero-title {
-      max-width: 700px;
+      max-width: 620px;
     }
 
     .hero-eyebrow {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--laranja);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .hero-title h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
       font-weight: 800;
       letter-spacing: -0.04em;
-      line-height: 1.0;
+      line-height: 1.05;
       color: #fff;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .hero-title h1 em {
@@ -142,24 +138,23 @@
     }
 
     .hero-title p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.5);
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.45);
       font-weight: 300;
     }
 
-    /* faixa laranja separando hero dos cards */
     .stripe {
       height: 4px;
       background: var(--laranja);
     }
 
     /* ══════════════════════════════
-       ÁREA DE CARDS — fundo claro
+       CONTEÚDO
     ══════════════════════════════ */
     .content {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 56px 48px 100px;
+      padding: 52px 48px 100px;
     }
 
     /* ── SECTION LABEL ── */
@@ -184,119 +179,223 @@
       background: var(--cinza-borda);
     }
 
-    /* ── GRID ── */
-    .grid {
+    /* ══════════════════════════════
+       CARDS ATIVOS — estilizados
+    ══════════════════════════════ */
+    .grid-active {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 22px;
       margin-bottom: 56px;
     }
 
-    /* ── CARD ── */
-    .card {
+    .card-active {
       position: relative;
-      background: #fff;
-      border: 1px solid var(--cinza-borda);
-      border-radius: 14px;
-      padding: 32px 28px 26px;
+      border-radius: 20px;
+      padding: 36px 32px 32px;
       text-decoration: none;
-      color: var(--texto);
+      color: #fff;
       display: block;
-      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 200px;
+    }
+
+    .card-active:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+    }
+
+    .card-active--diesel {
+      background: linear-gradient(135deg, #2E2A6E 0%, #3D3888 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card-active--ipk {
+      background: linear-gradient(135deg, #C46A00 0%, #E8820C 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* decoração geométrica interna */
+    .card-deco {
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 32px solid rgba(255,255,255,0.07);
+      pointer-events: none;
+    }
+
+    .card-deco-2 {
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 20px solid rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+
+    /* linha diagonal decorativa */
+    .card-line {
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      pointer-events: none;
       overflow: hidden;
     }
+    .card-line svg { width: 100%; height: 100%; }
 
-    .card:not(.card--coming)::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--laranja);
-      border-radius: 14px 14px 0 0;
+    .card-active-inner {
+      position: relative;
+      z-index: 1;
     }
 
-    .card:not(.card--coming):hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(46,42,110,0.13);
-      border-color: rgba(46,42,110,0.25);
-    }
-
-    .card--coming {
-      opacity: 0.5;
-      cursor: default;
-    }
-
-    .card-icon {
+    /* ícone SVG moderno */
+    .card-icon-wrap {
       width: 52px;
       height: 52px;
-      border-radius: 13px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255,255,255,0.15);
     }
 
-    .card-icon--diesel { background: #FEF3E2; }
-    .card-icon--ipk    { background: #EEEDF8; }
-    .card-icon--dre    { background: #E8F5EF; }
-    .card-icon--supply { background: #EEF0FE; }
-    .card-icon--rh     { background: #FEE8F4; }
-    .card-icon--manut  { background: #FEF6E2; }
+    .card-icon-wrap svg {
+      width: 26px;
+      height: 26px;
+    }
 
-    .card-tag {
+    .card-active-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       font-size: 0.66rem;
       font-weight: 600;
-      letter-spacing: 0.11em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       border-radius: 20px;
-      padding: 4px 10px;
-      margin-bottom: 12px;
+      padding: 4px 12px;
+      margin-bottom: 14px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
     }
-    .card-tag--live {
-      background: #E8F5EF;
-      color: #1a7a4a;
-    }
-    .card-tag--live::before {
+    .card-active-tag::before {
       content: '';
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: #1a7a4a;
+      background: #fff;
     }
-    .card-tag--soon {
+
+    .card-active-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .card-active-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.55;
+      max-width: 300px;
+    }
+
+    .card-active-arrow {
+      position: absolute;
+      top: 32px; right: 28px;
+      z-index: 1;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #fff;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .card-active:hover .card-active-arrow {
+      background: rgba(255,255,255,0.25);
+      transform: translate(3px, -3px);
+    }
+
+    /* ══════════════════════════════
+       CARDS EM BREVE
+    ══════════════════════════════ */
+    .grid-coming {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .card-coming {
+      background: #fff;
+      border: 1px solid var(--cinza-borda);
+      border-radius: 16px;
+      padding: 24px 22px;
+      opacity: 0.55;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* barra superior roxo apagado */
+    .card-coming::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--roxo);
+      opacity: 0.25;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .card-coming-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: var(--cinza-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      border: 1px solid var(--cinza-borda);
+    }
+    .card-coming-icon svg {
+      width: 20px; height: 20px;
+    }
+
+    .card-coming-tag {
+      display: inline-block;
+      font-size: 0.63rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 3px 9px;
+      margin-bottom: 10px;
       background: #F0F0F5;
       color: #9A9AB5;
     }
 
-    .card-name {
+    .card-coming-name {
       font-family: 'Syne', sans-serif;
-      font-size: 1.35rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      color: var(--texto);
+      margin-bottom: 5px;
       letter-spacing: -0.02em;
     }
 
-    .card-desc {
-      font-size: 0.84rem;
+    .card-coming-desc {
+      font-size: 0.8rem;
       color: var(--texto-suave);
-      line-height: 1.6;
-    }
-
-    .card-arrow {
-      position: absolute;
-      top: 26px; right: 24px;
-      font-size: 1.1rem;
-      color: var(--laranja);
-      opacity: 0;
-      transform: translate(-4px, 4px);
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .card:not(.card--coming):hover .card-arrow {
-      opacity: 1;
-      transform: translate(0, 0);
+      line-height: 1.5;
     }
 
     /* ── FOOTER ── */
@@ -313,19 +412,19 @@
     footer img {
       height: 36px;
       width: auto;
-      opacity: 0.5;
+      opacity: 0.45;
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
-      .hero { padding: 0 20px 48px; }
-      .nav { padding: 24px 0 36px; margin-bottom: 36px; }
-      .hub-name { font-size: 1.6rem; }
-      .logo-area img { height: 52px; }
-      .hero-title h1 { font-size: 2.4rem; }
+      .hero { padding: 0 20px 40px; }
+      .nav { padding: 24px 0 32px; margin-bottom: 32px; }
+      .hub-name { font-size: 2.2rem; }
+      .logo-area img { height: 48px; }
+      .hero-title h1 { font-size: 1.8rem; }
       .content { padding: 36px 20px 80px; }
-      .grid { grid-template-columns: 1fr; }
-      .nav { flex-wrap: wrap; gap: 16px; }
+      .grid-active { grid-template-columns: 1fr; }
+      .grid-coming { grid-template-columns: 1fr 1fr; }
+      .nav { flex-wrap: wrap; gap: 14px; }
       footer { flex-direction: column; gap: 16px; align-items: flex-start; }
     }
   </style>
@@ -334,37 +433,28 @@
 
   <!-- HERO ROXO -->
   <div class="hero">
-
-    <!-- mapa de linhas dentro do hero -->
     <div class="hero-map">
-      <svg viewBox="0 0 1440 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <line x1="0"    y1="160" x2="1440" y2="160" stroke="#fff" stroke-width="1.5" opacity="0.06"/>
-        <line x1="0"    y1="340" x2="1440" y2="340" stroke="#E8820C" stroke-width="1.5" opacity="0.1"/>
-        <line x1="360"  y1="0"   x2="360"  y2="520" stroke="#fff" stroke-width="1.5" opacity="0.05"/>
-        <line x1="860"  y1="0"   x2="860"  y2="520" stroke="#E8820C" stroke-width="1.5" opacity="0.08"/>
-        <line x1="1200" y1="0"   x2="1200" y2="520" stroke="#fff" stroke-width="1"   opacity="0.04"/>
-
-        <line x1="0"   y1="420" x2="500"  y2="0"   stroke="#fff" stroke-width="1" opacity="0.04"/>
-        <line x1="700" y1="520" x2="1300" y2="60"  stroke="#E8820C" stroke-width="1" opacity="0.07"/>
-
-        <line x1="0"   y1="260" x2="360"  y2="260" stroke="#fff" stroke-width="1.5" opacity="0.05"/>
-        <line x1="360" y1="260" x2="860"  y2="340" stroke="#E8820C" stroke-width="1.5" opacity="0.08"/>
-        <line x1="860" y1="340" x2="1440" y2="340" stroke="#E8820C" stroke-width="1.5" opacity="0.08"/>
-
-        <!-- nós -->
-        <circle cx="860"  cy="340" r="5" fill="none" stroke="#E8820C" stroke-width="1.5" opacity="0.3"/>
-        <circle cx="360"  cy="160" r="5" fill="none" stroke="#fff"    stroke-width="1.5" opacity="0.2"/>
-        <circle cx="1200" cy="340" r="4" fill="none" stroke="#E8820C" stroke-width="1.5" opacity="0.22"/>
-        <circle cx="360"  cy="260" r="4" fill="none" stroke="#fff"    stroke-width="1.5" opacity="0.18"/>
-
-        <circle cx="600"  cy="160" r="3" fill="#fff"    opacity="0.1"/>
-        <circle cx="1050" cy="160" r="3" fill="#fff"    opacity="0.1"/>
-        <circle cx="200"  cy="340" r="3" fill="#E8820C" opacity="0.15"/>
+      <svg viewBox="0 0 1440 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0"    y1="130" x2="1440" y2="130" stroke="#fff"    stroke-width="1.5" opacity="0.06"/>
+        <line x1="0"    y1="290" x2="1440" y2="290" stroke="#E8820C" stroke-width="1.5" opacity="0.1"/>
+        <line x1="360"  y1="0"   x2="360"  y2="420" stroke="#fff"    stroke-width="1.5" opacity="0.05"/>
+        <line x1="860"  y1="0"   x2="860"  y2="420" stroke="#E8820C" stroke-width="1.5" opacity="0.08"/>
+        <line x1="1200" y1="0"   x2="1200" y2="420" stroke="#fff"    stroke-width="1"   opacity="0.04"/>
+        <line x1="0"    y1="380" x2="500"  y2="0"   stroke="#fff"    stroke-width="1"   opacity="0.04"/>
+        <line x1="700"  y1="420" x2="1300" y2="40"  stroke="#E8820C" stroke-width="1"   opacity="0.07"/>
+        <line x1="360"  y1="210" x2="860"  y2="290" stroke="#E8820C" stroke-width="1.5" opacity="0.09"/>
+        <line x1="860"  y1="290" x2="1440" y2="290" stroke="#E8820C" stroke-width="1.5" opacity="0.09"/>
+        <circle cx="860"  cy="290" r="5" fill="none" stroke="#E8820C" stroke-width="2"   opacity="0.28"/>
+        <circle cx="360"  cy="130" r="5" fill="none" stroke="#fff"    stroke-width="1.5" opacity="0.18"/>
+        <circle cx="1200" cy="290" r="4" fill="none" stroke="#E8820C" stroke-width="1.5" opacity="0.2"/>
+        <circle cx="360"  cy="210" r="4" fill="none" stroke="#fff"    stroke-width="1.5" opacity="0.15"/>
+        <circle cx="600"  cy="130" r="3" fill="#fff"    opacity="0.1"/>
+        <circle cx="1060" cy="130" r="3" fill="#fff"    opacity="0.1"/>
+        <circle cx="200"  cy="290" r="3" fill="#E8820C" opacity="0.15"/>
       </svg>
     </div>
 
     <div class="hero-inner">
-      <!-- NAV -->
       <div class="nav">
         <div class="logo-area">
           <img src="LOGO_UNIR_5.png" alt="Expresso Unir" />
@@ -374,7 +464,6 @@
         <div class="badge">Central de sistemas</div>
       </div>
 
-      <!-- TÍTULO -->
       <div class="hero-title">
         <div class="hero-eyebrow">Expresso Unir</div>
         <h1>Seus sistemas,<br><em>em um só lugar.</em></h1>
@@ -382,74 +471,130 @@
       </div>
     </div>
   </div>
-
-  <!-- faixa laranja -->
   <div class="stripe"></div>
 
-  <!-- CARDS -->
+  <!-- CONTEÚDO -->
   <div class="content">
 
     <div class="section-label"><span>Disponíveis</span></div>
-    <div class="grid">
+    <div class="grid-active">
 
-      <a class="card" href="https://avlbelisario.github.io/Acompanhamento-Diesel-Unir/" target="_blank" rel="noopener">
-        <div class="card-icon card-icon--diesel">⛽</div>
-        <span class="card-tag card-tag--live">Ativo</span>
-        <div class="card-name">Diesel</div>
-        <div class="card-desc">Acompanhamento e controle de consumo de diesel da frota.</div>
-        <div class="card-arrow">↗</div>
+      <!-- Card Diesel -->
+      <a class="card-active card-active--diesel" href="https://avlbelisario.github.io/Acompanhamento-Diesel-Unir/" target="_blank" rel="noopener">
+        <div class="card-deco"></div>
+        <div class="card-deco-2"></div>
+        <div class="card-line">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="100" x2="400" y2="100" stroke="#fff" stroke-width="1" opacity="0.06"/>
+            <line x1="200" y1="0" x2="200" y2="200" stroke="#fff" stroke-width="1" opacity="0.06"/>
+            <line x1="0" y1="0" x2="400" y2="200" stroke="#fff" stroke-width="1" opacity="0.04"/>
+          </svg>
+        </div>
+        <div class="card-active-inner">
+          <div class="card-icon-wrap">
+            <!-- ícone: gota de combustível -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C8 7 6 10 6 13a6 6 0 0012 0c0-3-2-6-6-11z"/>
+              <path d="M12 17v.01"/>
+            </svg>
+          </div>
+          <span class="card-active-tag">Ativo</span>
+          <div class="card-active-name">Diesel</div>
+          <div class="card-active-desc">Acompanhamento e controle de consumo de diesel da frota.</div>
+        </div>
+        <div class="card-active-arrow">↗</div>
       </a>
 
-      <a class="card" href="https://avlbelisario.github.io/Expresso-Unir-IPK/" target="_blank" rel="noopener">
-        <div class="card-icon card-icon--ipk">📊</div>
-        <span class="card-tag card-tag--live">Ativo</span>
-        <div class="card-name">IPK</div>
-        <div class="card-desc">Índice de passageiros por quilômetro — análise de desempenho operacional.</div>
-        <div class="card-arrow">↗</div>
+      <!-- Card IPK -->
+      <a class="card-active card-active--ipk" href="https://avlbelisario.github.io/Expresso-Unir-IPK/" target="_blank" rel="noopener">
+        <div class="card-deco"></div>
+        <div class="card-deco-2"></div>
+        <div class="card-line">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="100" x2="400" y2="100" stroke="#fff" stroke-width="1" opacity="0.06"/>
+            <line x1="200" y1="0" x2="200" y2="200" stroke="#fff" stroke-width="1" opacity="0.06"/>
+            <line x1="0" y1="200" x2="400" y2="0" stroke="#fff" stroke-width="1" opacity="0.04"/>
+          </svg>
+        </div>
+        <div class="card-active-inner">
+          <div class="card-icon-wrap">
+            <!-- ícone: gráfico de barras crescente -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="12" width="4" height="9" rx="1"/>
+              <rect x="10" y="7" width="4" height="14" rx="1"/>
+              <rect x="17" y="3" width="4" height="18" rx="1"/>
+              <line x1="3" y1="22" x2="21" y2="22"/>
+            </svg>
+          </div>
+          <span class="card-active-tag">Ativo</span>
+          <div class="card-active-name">IPK</div>
+          <div class="card-active-desc">Índice de passageiros por quilômetro — análise de desempenho operacional.</div>
+        </div>
+        <div class="card-active-arrow">↗</div>
       </a>
 
     </div>
 
     <div class="section-label"><span>Em breve</span></div>
-    <div class="grid">
+    <div class="grid-coming">
 
-      <div class="card card--coming">
-        <div class="card-icon card-icon--dre">📈</div>
-        <span class="card-tag card-tag--soon">Em breve</span>
-        <div class="card-name">DRE Ajustada</div>
-        <div class="card-desc">Demonstração de resultado do exercício com ajustes gerenciais.</div>
+      <div class="card-coming">
+        <div class="card-coming-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#9A9AB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <span class="card-coming-tag">Em breve</span>
+        <div class="card-coming-name">DRE Ajustada</div>
+        <div class="card-coming-desc">Demonstração de resultado do exercício com ajustes gerenciais.</div>
       </div>
 
-      <div class="card card--coming">
-        <div class="card-icon card-icon--supply">📦</div>
-        <span class="card-tag card-tag--soon">Em breve</span>
-        <div class="card-name">Suprimentos</div>
-        <div class="card-desc">Gestão de estoque, compras e controle de insumos.</div>
+      <div class="card-coming">
+        <div class="card-coming-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#9A9AB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <span class="card-coming-tag">Em breve</span>
+        <div class="card-coming-name">Suprimentos</div>
+        <div class="card-coming-desc">Gestão de estoque, compras e controle de insumos.</div>
       </div>
 
-      <div class="card card--coming">
-        <div class="card-icon card-icon--rh">👥</div>
-        <span class="card-tag card-tag--soon">Em breve</span>
-        <div class="card-name">RH</div>
-        <div class="card-desc">Recursos humanos, folha de ponto e gestão de colaboradores.</div>
+      <div class="card-coming">
+        <div class="card-coming-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#9A9AB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+            <path d="M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <span class="card-coming-tag">Em breve</span>
+        <div class="card-coming-name">RH</div>
+        <div class="card-coming-desc">Recursos humanos, folha de ponto e gestão de colaboradores.</div>
       </div>
 
-      <div class="card card--coming">
-        <div class="card-icon card-icon--manut">🔧</div>
-        <span class="card-tag card-tag--soon">Em breve</span>
-        <div class="card-name">Manutenção</div>
-        <div class="card-desc">Ordens de serviço, preventiva e corretiva da frota.</div>
+      <div class="card-coming">
+        <div class="card-coming-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#9A9AB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <span class="card-coming-tag">Em breve</span>
+        <div class="card-coming-name">Manutenção</div>
+        <div class="card-coming-desc">Ordens de serviço, preventiva e corretiva da frota.</div>
       </div>
 
     </div>
 
-    <!-- FOOTER -->
     <footer>
       <p>© 2025 Expresso Unir · Hub de sistemas internos</p>
       <img src="LOGO_UNIR_5.png" alt="Unir" />
     </footer>
 
   </div>
-
 </body>
 </html>
