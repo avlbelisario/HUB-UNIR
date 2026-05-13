@@ -4,366 +4,346 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hub Unir</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --roxo:    #2E2A6E;
       --laranja: #E8820C;
-      --cinza-bg: #F5F5F7;
-      --cinza-borda: #E4E4E8;
-      --texto: #1A1A2E;
-      --texto-suave: #7A7A90;
+      --roxo:    #2E2A6E;
+      --branco:  #FFFFFF;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #F5F5F7;
-      color: var(--texto);
+      background: #1C1A3A;
+      color: #fff;
       min-height: 100vh;
-      position: relative;
+      overflow-x: hidden;
     }
 
-    /* ── FORMAS GEOMÉTRICAS (fundo) ── */
-    .bg-shapes {
+    /* ── BACKGROUND ── */
+    .bg-layer {
       position: fixed;
       inset: 0;
       z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 0% 0%,   rgba(46,42,110,0.75) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(232,130,12,0.28) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 60% 40%,  rgba(60,55,140,0.18) 0%, transparent 60%),
+        #1C1A3A;
     }
 
-    /* arco roxo — canto superior esquerdo */
-    .bg-shapes .shape-roxo {
-      position: absolute;
-      width: 700px;
-      height: 700px;
-      border-radius: 50%;
-      top: -320px;
-      left: -280px;
-      background: radial-gradient(circle, rgba(46,42,110,0.13) 0%, rgba(46,42,110,0.04) 55%, transparent 75%);
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 52px 52px;
     }
 
-    /* arco laranja — canto inferior direito */
-    .bg-shapes .shape-laranja {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      bottom: -240px;
-      right: -200px;
-      background: radial-gradient(circle, rgba(232,130,12,0.13) 0%, rgba(232,130,12,0.04) 55%, transparent 75%);
-    }
-
-    /* anel roxo — decorativo, canto inferior esquerdo */
-    .bg-shapes .shape-anel {
-      position: absolute;
-      width: 340px;
+    /* brilho laranja sutil no topo */
+    .bg-glow {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
       height: 340px;
       border-radius: 50%;
-      border: 28px solid rgba(46,42,110,0.05);
-      bottom: 60px;
-      left: -120px;
+      background: radial-gradient(ellipse, rgba(232,130,12,0.12) 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
     }
 
-    /* tudo acima do fundo */
-    header, .header-stripe, .wrapper {
+    /* ── WRAPPER ── */
+    .wrapper {
       position: relative;
       z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
     }
 
     /* ── HEADER ── */
     header {
-      background: var(--roxo);
-      padding: 0 40px;
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 68px;
+      padding: 40px 0 52px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 72px;
+      position: relative;
+      z-index: 1;
     }
 
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 20px;
     }
 
     .logo-area img {
-      height: 38px;
+      height: 52px;
       width: auto;
-      filter: brightness(0) invert(1);
+      filter: brightness(0) invert(1) drop-shadow(0 0 14px rgba(232,130,12,0.4));
     }
 
     .divider-v {
       width: 1px;
-      height: 24px;
-      background: rgba(255,255,255,0.2);
+      height: 28px;
+      background: rgba(255,255,255,0.18);
     }
 
-    .hub-label {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.75);
-      letter-spacing: 0.04em;
+    .hub-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
     }
+
+    .hub-name span { color: var(--laranja); }
 
     .badge {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #fff;
-      background: var(--laranja);
+      color: var(--laranja);
+      border: 1px solid rgba(232,130,12,0.4);
       border-radius: 20px;
-      padding: 5px 13px;
-    }
-
-    /* faixa laranja fina */
-    .header-stripe {
-      height: 3px;
-      background: var(--laranja);
-    }
-
-    /* ── CONTEÚDO ── */
-    .wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 40px 80px;
+      padding: 7px 16px;
+      background: rgba(232,130,12,0.08);
     }
 
     /* ── HERO ── */
     .hero {
-      margin-bottom: 44px;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--laranja);
-      margin-bottom: 10px;
+      margin-bottom: 72px;
     }
 
     .hero h1 {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 700;
-      color: var(--texto);
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-      line-height: 1.1;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      margin-bottom: 20px;
+      background: linear-gradient(120deg, #fff 35%, rgba(232,130,12,0.9) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .hero p {
-      font-size: 0.9rem;
-      color: var(--texto-suave);
-      font-weight: 400;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.45);
+      max-width: 420px;
+      line-height: 1.6;
+      font-weight: 300;
     }
 
     /* ── SECTION LABEL ── */
     .section-label {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 14px;
+      margin-bottom: 28px;
     }
     .section-label span {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--texto-suave);
+      color: rgba(255,255,255,0.3);
+      white-space: nowrap;
     }
     .section-label::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: var(--cinza-borda);
+      background: rgba(255,255,255,0.07);
     }
 
     /* ── GRID ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 18px;
-      margin-bottom: 48px;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+      margin-bottom: 64px;
     }
 
     /* ── CARD ── */
     .card {
       position: relative;
-      background: #fff;
-      border: 1px solid var(--cinza-borda);
-      border-radius: 12px;
-      padding: 28px 24px 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 20px;
+      padding: 36px 30px 30px;
       text-decoration: none;
-      color: var(--texto);
+      color: #fff;
       display: block;
-      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+      backdrop-filter: blur(8px);
       overflow: hidden;
     }
 
-    /* barra laranja topo — só ativos */
-    .card:not(.card--coming)::before {
+    .card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--laranja);
-      border-radius: 12px 12px 0 0;
+      inset: 0;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(232,130,12,0.09) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .card:not(.card--coming):hover {
-      box-shadow: 0 8px 32px rgba(46,42,110,0.12);
-      transform: translateY(-3px);
-      border-color: rgba(46,42,110,0.2);
+      transform: translateY(-7px);
+      border-color: rgba(232,130,12,0.5);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.25), 0 0 0 1px rgba(232,130,12,0.22);
     }
 
+    .card:not(.card--coming):hover::before { opacity: 1; }
+
     .card--coming {
-      opacity: 0.55;
+      opacity: 0.4;
       cursor: default;
     }
 
     /* ícone */
     .card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      margin-bottom: 18px;
+      font-size: 1.7rem;
+      margin-bottom: 22px;
     }
 
-    .card-icon--diesel { background: #FEF3E2; }
-    .card-icon--ipk    { background: #EEEDF8; }
-    .card-icon--dre    { background: #E8F5EF; }
-    .card-icon--supply { background: #EEF0FE; }
-    .card-icon--rh     { background: #FEE8F4; }
-    .card-icon--manut  { background: #FEF6E2; }
+    .card-icon--diesel { background: rgba(232,130,12,0.15); }
+    .card-icon--ipk    { background: rgba(46,42,110,0.45); }
+    .card-icon--dre    { background: rgba(16,185,129,0.15); }
+    .card-icon--supply { background: rgba(99,102,241,0.15); }
+    .card-icon--rh     { background: rgba(236,72,153,0.15); }
+    .card-icon--manut  { background: rgba(245,158,11,0.15); }
 
     /* tag */
     .card-tag {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      font-size: 0.65rem;
+      gap: 6px;
+      font-size: 0.67rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       border-radius: 20px;
-      padding: 3px 9px;
-      margin-bottom: 10px;
+      padding: 4px 11px;
+      margin-bottom: 14px;
     }
     .card-tag--live {
-      background: #E8F5EF;
-      color: #1a7a4a;
+      background: rgba(16,185,129,0.15);
+      color: #34d399;
+      border: 1px solid rgba(16,185,129,0.28);
     }
     .card-tag--live::before {
       content: '';
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: #1a7a4a;
+      background: #34d399;
     }
     .card-tag--soon {
-      background: #F0F0F4;
-      color: #9A9AB0;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .card-name {
-      font-size: 1.1rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       letter-spacing: -0.02em;
     }
 
     .card-desc {
-      font-size: 0.82rem;
-      color: var(--texto-suave);
-      line-height: 1.55;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.6;
     }
 
     .card-arrow {
       position: absolute;
-      top: 24px;
-      right: 22px;
-      font-size: 1rem;
+      top: 30px;
+      right: 28px;
+      font-size: 1.2rem;
       color: var(--laranja);
       opacity: 0;
-      transform: translate(-3px, 3px);
-      transition: opacity 0.2s, transform 0.2s;
+      transform: translate(-4px, 4px);
+      transition: opacity 0.25s, transform 0.25s;
     }
     .card:not(.card--coming):hover .card-arrow {
       opacity: 1;
-      transform: translate(0,0);
+      transform: translate(0, 0);
     }
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--cinza-borda);
-      padding-top: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: var(--texto-suave);
-      font-size: 0.75rem;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.2);
+      font-size: 0.78rem;
     }
 
     footer img {
-      height: 24px;
+      height: 30px;
       width: auto;
-      opacity: 0.3;
+      opacity: 0.25;
+      filter: brightness(0) invert(1);
     }
 
-    @media (max-width: 600px) {
-      .wrapper { padding: 32px 20px 60px; }
-      header { padding: 0 20px; }
+    @media (max-width: 640px) {
+      .wrapper { padding: 0 20px 80px; }
+      header { flex-direction: column; align-items: flex-start; gap: 18px; padding: 28px 0 36px; margin-bottom: 48px; }
+      .hero h1 { font-size: 2.6rem; }
       .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- FUNDO: FORMAS GEOMÉTRICAS -->
-  <div class="bg-shapes">
-    <div class="shape-roxo"></div>
-    <div class="shape-laranja"></div>
-    <div class="shape-anel"></div>
-  </div>
-
-  <!-- HEADER -->
-  <header>
-    <div class="header-inner">
-      <div class="logo-area">
-        <img src="LOGO_UNIR_5.png" alt="Expresso Unir" />
-        <div class="divider-v"></div>
-        <span class="hub-label">Hub de Sistemas</span>
-      </div>
-      <div class="badge">Central de sistemas</div>
-    </div>
-  </header>
-  <div class="header-stripe"></div>
+  <div class="bg-layer"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
 
   <div class="wrapper">
 
+    <!-- HEADER -->
+    <header>
+      <div class="logo-area">
+        <img src="LOGO_UNIR_5.png" alt="Expresso Unir" />
+        <div class="divider-v"></div>
+        <div class="hub-name">Hub <span>Unir</span></div>
+      </div>
+      <div class="badge">Central de sistemas</div>
+    </header>
+
     <!-- HERO -->
     <div class="hero">
-      <div class="hero-eyebrow">Expresso Unir</div>
       <h1>Seus sistemas,<br>em um só lugar.</h1>
       <p>Selecione o painel que deseja acessar.</p>
     </div>
 
-    <!-- ATIVOS -->
-    <div class="section-label">
-      <span>Disponíveis</span>
-    </div>
+    <!-- DISPONÍVEIS -->
+    <div class="section-label"><span>Disponíveis</span></div>
 
     <div class="grid">
 
@@ -386,9 +366,7 @@
     </div>
 
     <!-- EM BREVE -->
-    <div class="section-label">
-      <span>Em breve</span>
-    </div>
+    <div class="section-label"><span>Em breve</span></div>
 
     <div class="grid">
 
