@@ -4,366 +4,430 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hub Unir</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
+      --roxo:    #2E2A6E;
       --laranja: #E8820C;
-      --roxo: #2E2A6E;
-      --cinza: #9A9A9A;
-      --branco: #FFFFFF;
+      --cinza-bg: #F5F5F7;
+      --cinza-borda: #E4E4E8;
+      --texto: #1A1A2E;
+      --texto-suave: #7A7A90;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #0D0C1D;
-      color: #fff;
+      background: #F5F5F7;
+      color: var(--texto);
       min-height: 100vh;
-      overflow-x: hidden;
+      position: relative;
     }
 
-    /* BACKGROUND */
-    .bg-layer {
+    /* ── FORMAS GEOMÉTRICAS (fundo) ── */
+    .bg-shapes {
       position: fixed;
       inset: 0;
       z-index: 0;
-      background:
-        radial-gradient(ellipse 70% 50% at 10% 20%, rgba(46,42,110,0.55) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(232,130,12,0.30) 0%, transparent 65%),
-        #0D0C1D;
-    }
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
+      pointer-events: none;
+      overflow: hidden;
     }
 
-    /* WRAPPER */
-    .wrapper {
+    /* arco roxo — canto superior esquerdo */
+    .bg-shapes .shape-roxo {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      top: -320px;
+      left: -280px;
+      background: radial-gradient(circle, rgba(46,42,110,0.13) 0%, rgba(46,42,110,0.04) 55%, transparent 75%);
+    }
+
+    /* arco laranja — canto inferior direito */
+    .bg-shapes .shape-laranja {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      bottom: -240px;
+      right: -200px;
+      background: radial-gradient(circle, rgba(232,130,12,0.13) 0%, rgba(232,130,12,0.04) 55%, transparent 75%);
+    }
+
+    /* anel roxo — decorativo, canto inferior esquerdo */
+    .bg-shapes .shape-anel {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      border: 28px solid rgba(46,42,110,0.05);
+      bottom: 60px;
+      left: -120px;
+    }
+
+    /* tudo acima do fundo */
+    header, .header-stripe, .wrapper {
       position: relative;
       z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 32px 80px;
     }
 
-    /* HEADER */
+    /* ── HEADER ── */
     header {
+      background: var(--roxo);
+      padding: 0 40px;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 36px 0 0;
+      height: 68px;
     }
+
     .logo-area {
       display: flex;
       align-items: center;
       gap: 14px;
     }
+
     .logo-area img {
-      height: 52px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(232,130,12,0.4));
+      height: 38px;
+      width: auto;
+      filter: brightness(0) invert(1);
     }
-    .logo-area .hub-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: #fff;
+
+    .divider-v {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.2);
     }
-    .logo-area .hub-name span {
-      color: var(--laranja);
+
+    .hub-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.04em;
     }
+
     .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--laranja);
+      border-radius: 20px;
+      padding: 5px 13px;
+    }
+
+    /* faixa laranja fina */
+    .header-stripe {
+      height: 3px;
+      background: var(--laranja);
+    }
+
+    /* ── CONTEÚDO ── */
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-bottom: 44px;
+    }
+
+    .hero-eyebrow {
       font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      background: rgba(232,130,12,0.15);
-      border: 1px solid rgba(232,130,12,0.35);
       color: var(--laranja);
-      padding: 6px 14px;
-      border-radius: 100px;
+      margin-bottom: 10px;
     }
 
-    /* HERO */
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      padding: 64px 0 48px;
-    }
-    .hero-text {
-      flex: 1;
-    }
-    .hero-text h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800;
+    .hero h1 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--texto);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
       line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    .hero-text h1 em {
-      font-style: normal;
-      color: var(--laranja);
-    }
-    .hero-text p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.6;
-      max-width: 480px;
-    }
-    .hero-img {
-      flex: 0 0 auto;
-      width: clamp(180px, 28vw, 320px);
-      opacity: 0.85;
-      filter: drop-shadow(0 12px 32px rgba(232,130,12,0.25));
-    }
-    .hero-img img {
-      width: 100%;
-      height: auto;
     }
 
-    /* SECTION LABEL */
+    .hero p {
+      font-size: 0.9rem;
+      color: var(--texto-suave);
+      font-weight: 400;
+    }
+
+    /* ── SECTION LABEL ── */
     .section-label {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
     .section-label span {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: var(--texto-suave);
     }
     .section-label::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: rgba(255,255,255,0.07);
+      background: var(--cinza-borda);
     }
 
-    /* GRID */
+    /* ── GRID ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 18px;
+      margin-bottom: 48px;
     }
 
-    /* CARD */
+    /* ── CARD ── */
     .card {
       position: relative;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--cinza-borda);
+      border-radius: 12px;
       padding: 28px 24px 24px;
       text-decoration: none;
-      color: #fff;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      cursor: pointer;
+      color: var(--texto);
+      display: block;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      overflow: hidden;
     }
+
+    /* barra laranja topo — só ativos */
+    .card:not(.card--coming)::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--laranja);
+      border-radius: 12px 12px 0 0;
+    }
+
     .card:not(.card--coming):hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(46,42,110,0.35);
-      border-color: rgba(232,130,12,0.4);
-      background: rgba(255,255,255,0.07);
+      box-shadow: 0 8px 32px rgba(46,42,110,0.12);
+      transform: translateY(-3px);
+      border-color: rgba(46,42,110,0.2);
     }
+
     .card--coming {
-      opacity: 0.45;
+      opacity: 0.55;
       cursor: default;
     }
 
-    /* CARD ICON */
+    /* ícone */
     .card-icon {
-      font-size: 2rem;
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 4px;
+      font-size: 1.4rem;
+      margin-bottom: 18px;
     }
-    .card-icon--diesel  { background: rgba(232,130,12,0.15); }
-    .card-icon--ipk     { background: rgba(46,42,110,0.35); }
-    .card-icon--dre     { background: rgba(34,197,94,0.12); }
-    .card-icon--supply  { background: rgba(99,102,241,0.15); }
-    .card-icon--rh      { background: rgba(236,72,153,0.12); }
-    .card-icon--manut   { background: rgba(251,191,36,0.12); }
 
-    /* CARD TAG */
+    .card-icon--diesel { background: #FEF3E2; }
+    .card-icon--ipk    { background: #EEEDF8; }
+    .card-icon--dre    { background: #E8F5EF; }
+    .card-icon--supply { background: #EEF0FE; }
+    .card-icon--rh     { background: #FEE8F4; }
+    .card-icon--manut  { background: #FEF6E2; }
+
+    /* tag */
     .card-tag {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
       font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 100px;
+      border-radius: 20px;
+      padding: 3px 9px;
+      margin-bottom: 10px;
     }
     .card-tag--live {
-      background: rgba(34,197,94,0.15);
-      color: #4ade80;
-      border: 1px solid rgba(34,197,94,0.3);
+      background: #E8F5EF;
+      color: #1a7a4a;
+    }
+    .card-tag--live::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #1a7a4a;
     }
     .card-tag--soon {
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.4);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #F0F0F4;
+      color: #9A9AB0;
     }
 
     .card-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-    }
-    .card-desc {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.5;
-    }
-    .card-arrow {
-      margin-top: auto;
-      padding-top: 12px;
       font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--texto-suave);
+      line-height: 1.55;
+    }
+
+    .card-arrow {
+      position: absolute;
+      top: 24px;
+      right: 22px;
+      font-size: 1rem;
       color: var(--laranja);
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transform: translate(-3px, 3px);
+      transition: opacity 0.2s, transform 0.2s;
     }
     .card:not(.card--coming):hover .card-arrow {
       opacity: 1;
+      transform: translate(0,0);
     }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
-      margin-top: 72px;
+      border-top: 1px solid var(--cinza-borda);
+      padding-top: 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding-top: 28px;
-      color: rgba(255,255,255,0.25);
-      font-size: 0.8rem;
-    }
-    footer img {
-      height: 32px;
-      opacity: 0.5;
-      filter: grayscale(1);
+      color: var(--texto-suave);
+      font-size: 0.75rem;
     }
 
-    @media (max-width: 640px) {
-      .hero { flex-direction: column; }
-      .hero-img { width: 70%; margin: 0 auto; }
-      header { flex-direction: column; align-items: flex-start; gap: 12px; }
+    footer img {
+      height: 24px;
+      width: auto;
+      opacity: 0.3;
+    }
+
+    @media (max-width: 600px) {
+      .wrapper { padding: 32px 20px 60px; }
+      header { padding: 0 20px; }
+      .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<div class="bg-layer"></div>
-<div class="bg-grid"></div>
-
-<div class="wrapper">
+  <!-- FUNDO: FORMAS GEOMÉTRICAS -->
+  <div class="bg-shapes">
+    <div class="shape-roxo"></div>
+    <div class="shape-laranja"></div>
+    <div class="shape-anel"></div>
+  </div>
 
   <!-- HEADER -->
   <header>
-    <div class="logo-area">
-      <img src="LOGO_UNIR_5.png" alt="Unir" />
-      <div class="hub-name">Hub <span>Unir</span></div>
+    <div class="header-inner">
+      <div class="logo-area">
+        <img src="LOGO_UNIR_5.png" alt="Expresso Unir" />
+        <div class="divider-v"></div>
+        <span class="hub-label">Hub de Sistemas</span>
+      </div>
+      <div class="badge">Central de sistemas</div>
     </div>
-    <span class="badge">Central de sistemas</span>
   </header>
+  <div class="header-stripe"></div>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-text">
-      <h1>Sistemas internos<br><em>Expresso Unir</em></h1>
-      <p>Clique no sistema desejado para ser direcionado.</p>
+  <div class="wrapper">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Expresso Unir</div>
+      <h1>Seus sistemas,<br>em um só lugar.</h1>
+      <p>Selecione o painel que deseja acessar.</p>
     </div>
-    <div class="hero-img">
-      <img src="onibus.png" alt="Ônibus Expresso Unir" />
+
+    <!-- ATIVOS -->
+    <div class="section-label">
+      <span>Disponíveis</span>
     </div>
+
+    <div class="grid">
+
+      <a class="card" href="https://avlbelisario.github.io/Acompanhamento-Diesel-Unir/" target="_blank" rel="noopener">
+        <div class="card-icon card-icon--diesel">⛽</div>
+        <span class="card-tag card-tag--live">Ativo</span>
+        <div class="card-name">Diesel</div>
+        <div class="card-desc">Acompanhamento e controle de consumo de diesel da frota.</div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <a class="card" href="https://avlbelisario.github.io/Expresso-Unir-IPK/" target="_blank" rel="noopener">
+        <div class="card-icon card-icon--ipk">📊</div>
+        <span class="card-tag card-tag--live">Ativo</span>
+        <div class="card-name">IPK</div>
+        <div class="card-desc">Índice de passageiros por quilômetro — análise de desempenho operacional.</div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+    </div>
+
+    <!-- EM BREVE -->
+    <div class="section-label">
+      <span>Em breve</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card card--coming">
+        <div class="card-icon card-icon--dre">📈</div>
+        <span class="card-tag card-tag--soon">Em breve</span>
+        <div class="card-name">DRE Ajustada</div>
+        <div class="card-desc">Demonstração de resultado do exercício com ajustes gerenciais.</div>
+      </div>
+
+      <div class="card card--coming">
+        <div class="card-icon card-icon--supply">📦</div>
+        <span class="card-tag card-tag--soon">Em breve</span>
+        <div class="card-name">Suprimentos</div>
+        <div class="card-desc">Gestão de estoque, compras e controle de insumos.</div>
+      </div>
+
+      <div class="card card--coming">
+        <div class="card-icon card-icon--rh">👥</div>
+        <span class="card-tag card-tag--soon">Em breve</span>
+        <div class="card-name">RH</div>
+        <div class="card-desc">Recursos humanos, folha de ponto e gestão de colaboradores.</div>
+      </div>
+
+      <div class="card card--coming">
+        <div class="card-icon card-icon--manut">🔧</div>
+        <span class="card-tag card-tag--soon">Em breve</span>
+        <div class="card-name">Manutenção</div>
+        <div class="card-desc">Ordens de serviço, preventiva e corretiva da frota.</div>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 Expresso Unir · Hub de sistemas internos</p>
+      <img src="LOGO_UNIR_5.png" alt="Unir" />
+    </footer>
+
   </div>
-
-  <!-- LABEL -->
-  <div class="section-label">
-    <span>Sistemas disponíveis</span>
-  </div>
-
-  <!-- CARDS -->
-  <div class="grid">
-
-    <!-- Diesel -->
-    <a class="card" href="https://avlbelisario.github.io/Acompanhamento-Diesel-Unir/" target="_blank" rel="noopener">
-      <div class="card-icon card-icon--diesel">⛽</div>
-      <span class="card-tag card-tag--live">Ativo</span>
-      <div class="card-name">Diesel</div>
-      <div class="card-desc">Acompanhamento e controle de consumo de diesel da frota.</div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-    <!-- IPK -->
-    <a class="card" href="https://avlbelisario.github.io/Expresso-Unir-IPK/" target="_blank" rel="noopener">
-      <div class="card-icon card-icon--ipk">📊</div>
-      <span class="card-tag card-tag--live">Ativo</span>
-      <div class="card-name">IPK</div>
-      <div class="card-desc">Índice de passageiros por quilômetro — análise de desempenho operacional.</div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-    <!-- DRE -->
-    <div class="card card--coming">
-      <div class="card-icon card-icon--dre">📈</div>
-      <span class="card-tag card-tag--soon">Em breve</span>
-      <div class="card-name">DRE Ajustada</div>
-      <div class="card-desc">Demonstração de resultado do exercício com ajustes gerenciais.</div>
-    </div>
-
-    <!-- Suprimentos -->
-    <div class="card card--coming">
-      <div class="card-icon card-icon--supply">📦</div>
-      <span class="card-tag card-tag--soon">Em breve</span>
-      <div class="card-name">Suprimentos</div>
-      <div class="card-desc">Gestão de estoque, compras e controle de insumos.</div>
-    </div>
-
-    <!-- RH -->
-    <div class="card card--coming">
-      <div class="card-icon card-icon--rh">👥</div>
-      <span class="card-tag card-tag--soon">Em breve</span>
-      <div class="card-name">RH</div>
-      <div class="card-desc">Recursos humanos, folha de ponto e gestão de colaboradores.</div>
-    </div>
-
-    <!-- Manutenção -->
-    <div class="card card--coming">
-      <div class="card-icon card-icon--manut">🔧</div>
-      <span class="card-tag card-tag--soon">Em breve</span>
-      <div class="card-name">Manutenção</div>
-      <div class="card-desc">Ordens de serviço, preventiva e corretiva da frota.</div>
-    </div>
-
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Expresso Unir · Hub de sistemas internos</p>
-    <img src="LOGO_UNIR_5.png" alt="Unir" />
-  </footer>
-
-</div>
 </body>
 </html>
