@@ -4,79 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hub Unir</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --laranja: #E8820C;
-      --roxo:    #2E2A6E;
-      --branco:  #FFFFFF;
+      --roxo:        #2E2A6E;
+      --laranja:     #E8820C;
+      --cinza-bg:    #F7F7FA;
+      --cinza-borda: #E2E2EA;
+      --texto:       #1A1A2E;
+      --texto-suave: #7A7A95;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #1C1A3A;
-      color: #fff;
+      background: var(--cinza-bg);
+      color: var(--texto);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ── BACKGROUND ── */
-    .bg-layer {
+    /* ── MAPA DE LINHAS NO FUNDO ── */
+    .bg-map {
       position: fixed;
       inset: 0;
-      z-index: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 0% 0%,   rgba(46,42,110,0.75) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(232,130,12,0.28) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 60% 40%,  rgba(60,55,140,0.18) 0%, transparent 60%),
-        #1C1A3A;
-    }
-
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 52px 52px;
-    }
-
-    /* brilho laranja sutil no topo */
-    .bg-glow {
-      position: fixed;
-      top: -120px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(232,130,12,0.12) 0%, transparent 70%);
       z-index: 0;
       pointer-events: none;
+      overflow: hidden;
     }
-
-    /* ── WRAPPER ── */
-    .wrapper {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px 100px;
+    .bg-map svg {
+      width: 100%;
+      height: 100%;
     }
 
     /* ── HEADER ── */
     header {
+      position: relative;
+      z-index: 2;
+      background: var(--roxo);
+      padding: 0 48px;
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 40px 0 52px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 72px;
-      position: relative;
-      z-index: 1;
+      height: 88px;
     }
 
     .logo-area {
@@ -85,26 +61,27 @@
       gap: 20px;
     }
 
+    /* logo nas cores originais — sem filtro */
     .logo-area img {
-      height: 52px;
+      height: 62px;
       width: auto;
-      filter: brightness(0) invert(1) drop-shadow(0 0 14px rgba(232,130,12,0.4));
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
     }
 
     .divider-v {
       width: 1px;
-      height: 28px;
-      background: rgba(255,255,255,0.18);
+      height: 32px;
+      background: rgba(255,255,255,0.2);
     }
 
     .hub-name {
       font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       color: #fff;
+      line-height: 1;
     }
-
     .hub-name span { color: var(--laranja); }
 
     .badge {
@@ -112,37 +89,81 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--laranja);
-      border: 1px solid rgba(232,130,12,0.4);
+      color: var(--roxo);
+      background: var(--laranja);
       border-radius: 20px;
       padding: 7px 16px;
-      background: rgba(232,130,12,0.08);
+    }
+
+    /* faixa laranja */
+    .header-stripe {
+      position: relative;
+      z-index: 2;
+      height: 4px;
+      background: var(--laranja);
+    }
+
+    /* ── CONTEÚDO ── */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 56px 48px 100px;
     }
 
     /* ── HERO ── */
     .hero {
-      margin-bottom: 72px;
+      margin-bottom: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-bus {
+      flex: 0 0 auto;
+      width: clamp(300px, 42%, 560px);
+    }
+
+    .hero-bus img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 12px 32px rgba(46,42,110,0.18));
+      transform: scaleX(-1);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--laranja);
+      margin-bottom: 12px;
     }
 
     .hero h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
       font-weight: 800;
       letter-spacing: -0.04em;
-      line-height: 1.0;
-      margin-bottom: 20px;
-      background: linear-gradient(120deg, #fff 35%, rgba(232,130,12,0.9) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      line-height: 1.05;
+      color: var(--texto);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--roxo);
     }
 
     .hero p {
-      font-size: 1.15rem;
-      color: rgba(255,255,255,0.45);
-      max-width: 420px;
-      line-height: 1.6;
-      font-weight: 300;
+      font-size: 1rem;
+      color: var(--texto-suave);
+      font-weight: 400;
     }
 
     /* ── SECTION LABEL ── */
@@ -150,21 +171,21 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .section-label span {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
+      color: var(--texto-suave);
       white-space: nowrap;
     }
     .section-label::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: rgba(255,255,255,0.07);
+      background: var(--cinza-borda);
     }
 
     /* ── GRID ── */
@@ -172,120 +193,115 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 20px;
-      margin-bottom: 64px;
+      margin-bottom: 56px;
     }
 
     /* ── CARD ── */
     .card {
       position: relative;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 20px;
-      padding: 36px 30px 30px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid var(--cinza-borda);
+      border-radius: 14px;
+      padding: 32px 28px 26px;
       text-decoration: none;
-      color: #fff;
+      color: var(--texto);
       display: block;
-      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-      backdrop-filter: blur(8px);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      backdrop-filter: blur(6px);
       overflow: hidden;
     }
 
-    .card::before {
+    /* barra laranja topo — só ativos */
+    .card:not(.card--coming)::before {
       content: '';
       position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      background: linear-gradient(135deg, rgba(232,130,12,0.09) 0%, transparent 55%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--laranja);
+      border-radius: 14px 14px 0 0;
     }
 
     .card:not(.card--coming):hover {
-      transform: translateY(-7px);
-      border-color: rgba(232,130,12,0.5);
-      background: rgba(255,255,255,0.08);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.25), 0 0 0 1px rgba(232,130,12,0.22);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(46,42,110,0.13);
+      border-color: rgba(46,42,110,0.25);
     }
 
-    .card:not(.card--coming):hover::before { opacity: 1; }
-
     .card--coming {
-      opacity: 0.4;
+      opacity: 0.5;
       cursor: default;
     }
 
     /* ícone */
     .card-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
+      width: 52px;
+      height: 52px;
+      border-radius: 13px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.7rem;
-      margin-bottom: 22px;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
     }
 
-    .card-icon--diesel { background: rgba(232,130,12,0.15); }
-    .card-icon--ipk    { background: rgba(46,42,110,0.45); }
-    .card-icon--dre    { background: rgba(16,185,129,0.15); }
-    .card-icon--supply { background: rgba(99,102,241,0.15); }
-    .card-icon--rh     { background: rgba(236,72,153,0.15); }
-    .card-icon--manut  { background: rgba(245,158,11,0.15); }
+    .card-icon--diesel { background: #FEF3E2; }
+    .card-icon--ipk    { background: #EEEDF8; }
+    .card-icon--dre    { background: #E8F5EF; }
+    .card-icon--supply { background: #EEF0FE; }
+    .card-icon--rh     { background: #FEE8F4; }
+    .card-icon--manut  { background: #FEF6E2; }
 
     /* tag */
     .card-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.67rem;
+      font-size: 0.66rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       border-radius: 20px;
-      padding: 4px 11px;
-      margin-bottom: 14px;
+      padding: 4px 10px;
+      margin-bottom: 12px;
     }
     .card-tag--live {
-      background: rgba(16,185,129,0.15);
-      color: #34d399;
-      border: 1px solid rgba(16,185,129,0.28);
+      background: #E8F5EF;
+      color: #1a7a4a;
     }
     .card-tag--live::before {
       content: '';
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: #34d399;
+      background: #1a7a4a;
     }
     .card-tag--soon {
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.3);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #F0F0F5;
+      color: #9A9AB5;
     }
 
     .card-name {
       font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       letter-spacing: -0.02em;
     }
 
     .card-desc {
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.42);
+      font-size: 0.84rem;
+      color: var(--texto-suave);
       line-height: 1.6;
     }
 
     .card-arrow {
       position: absolute;
-      top: 30px;
-      right: 28px;
-      font-size: 1.2rem;
+      top: 26px;
+      right: 24px;
+      font-size: 1.1rem;
       color: var(--laranja);
       opacity: 0;
       transform: translate(-4px, 4px);
-      transition: opacity 0.25s, transform 0.25s;
+      transition: opacity 0.2s, transform 0.2s;
     }
     .card:not(.card--coming):hover .card-arrow {
       opacity: 1;
@@ -294,52 +310,108 @@
 
     /* ── FOOTER ── */
     footer {
+      border-top: 1px solid var(--cinza-borda);
+      padding-top: 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 36px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      color: rgba(255,255,255,0.2);
+      color: var(--texto-suave);
       font-size: 0.78rem;
     }
 
     footer img {
-      height: 30px;
+      height: 32px;
       width: auto;
-      opacity: 0.25;
-      filter: brightness(0) invert(1);
+      opacity: 0.45;
     }
 
     @media (max-width: 640px) {
-      .wrapper { padding: 0 20px 80px; }
-      header { flex-direction: column; align-items: flex-start; gap: 18px; padding: 28px 0 36px; margin-bottom: 48px; }
-      .hero h1 { font-size: 2.6rem; }
+      header { padding: 0 20px; }
+      .header-inner { height: 72px; }
+      .hub-name { font-size: 1.5rem; }
+      .logo-area img { height: 46px; }
+      .wrapper { padding: 36px 20px 80px; }
+      .hero { flex-direction: column; }
+      .hero-bus { width: 100%; }
       .grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-layer"></div>
-  <div class="bg-grid"></div>
-  <div class="bg-glow"></div>
+  <!-- MAPA DE LINHAS NO FUNDO -->
+  <div class="bg-map">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
 
-  <div class="wrapper">
+      <!-- linhas horizontais -->
+      <line x1="0" y1="200" x2="1440" y2="200" stroke="#2E2A6E" stroke-width="2" opacity="0.09"/>
+      <line x1="0" y1="460" x2="1440" y2="460" stroke="#E8820C" stroke-width="2" opacity="0.08"/>
+      <line x1="0" y1="720" x2="1440" y2="720" stroke="#2E2A6E" stroke-width="1.5" opacity="0.07"/>
 
-    <!-- HEADER -->
-    <header>
+      <!-- linhas verticais -->
+      <line x1="340"  y1="0" x2="340"  y2="900" stroke="#2E2A6E" stroke-width="2"   opacity="0.08"/>
+      <line x1="800"  y1="0" x2="800"  y2="900" stroke="#E8820C" stroke-width="2"   opacity="0.07"/>
+      <line x1="1180" y1="0" x2="1180" y2="900" stroke="#2E2A6E" stroke-width="1.5" opacity="0.06"/>
+
+      <!-- diagonais -->
+      <line x1="0"   y1="620" x2="520"  y2="0"   stroke="#2E2A6E" stroke-width="1.5" opacity="0.06"/>
+      <line x1="620" y1="900" x2="1240" y2="80"  stroke="#E8820C" stroke-width="1.5" opacity="0.06"/>
+      <line x1="940" y1="0"   x2="1440" y2="520" stroke="#2E2A6E" stroke-width="1.5" opacity="0.05"/>
+
+      <!-- ramais secundários -->
+      <line x1="0"    y1="330" x2="800"  y2="330" stroke="#2E2A6E" stroke-width="1.5" opacity="0.06"/>
+      <line x1="800"  y1="330" x2="1440" y2="580" stroke="#2E2A6E" stroke-width="1.5" opacity="0.06"/>
+
+      <line x1="0"    y1="580" x2="340"  y2="580" stroke="#E8820C" stroke-width="1.5" opacity="0.06"/>
+      <line x1="340"  y1="580" x2="800"  y2="460" stroke="#E8820C" stroke-width="1.5" opacity="0.06"/>
+      <line x1="800"  y1="460" x2="1180" y2="460" stroke="#E8820C" stroke-width="1.5" opacity="0.06"/>
+      <line x1="1180" y1="460" x2="1440" y2="720" stroke="#E8820C" stroke-width="1.5" opacity="0.06"/>
+
+      <!-- estações — anéis nos cruzamentos -->
+      <circle cx="800"  cy="460" r="6"  fill="#fff" stroke="#E8820C" stroke-width="2" opacity="0.28"/>
+      <circle cx="340"  cy="200" r="6"  fill="#fff" stroke="#2E2A6E" stroke-width="2" opacity="0.22"/>
+      <circle cx="1180" cy="460" r="6"  fill="#fff" stroke="#E8820C" stroke-width="2" opacity="0.22"/>
+      <circle cx="800"  cy="330" r="5"  fill="#fff" stroke="#2E2A6E" stroke-width="2" opacity="0.18"/>
+      <circle cx="340"  cy="580" r="5"  fill="#fff" stroke="#E8820C" stroke-width="2" opacity="0.18"/>
+      <circle cx="1180" cy="720" r="5"  fill="#fff" stroke="#2E2A6E" stroke-width="2" opacity="0.15"/>
+
+      <!-- pontos secundários -->
+      <circle cx="520"  cy="200" r="3.5" fill="#2E2A6E" opacity="0.12"/>
+      <circle cx="960"  cy="200" r="3.5" fill="#2E2A6E" opacity="0.12"/>
+      <circle cx="200"  cy="460" r="3.5" fill="#E8820C" opacity="0.12"/>
+      <circle cx="1060" cy="720" r="3.5" fill="#E8820C" opacity="0.12"/>
+      <circle cx="640"  cy="720" r="3.5" fill="#2E2A6E" opacity="0.10"/>
+      <circle cx="340"  cy="460" r="3.5" fill="#E8820C" opacity="0.10"/>
+      <circle cx="800"  cy="720" r="3.5" fill="#2E2A6E" opacity="0.10"/>
+    </svg>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
       <div class="logo-area">
         <img src="LOGO_UNIR_5.png" alt="Expresso Unir" />
         <div class="divider-v"></div>
         <div class="hub-name">Hub <span>Unir</span></div>
       </div>
       <div class="badge">Central de sistemas</div>
-    </header>
+    </div>
+  </header>
+  <div class="header-stripe"></div>
+
+  <div class="wrapper">
 
     <!-- HERO -->
     <div class="hero">
-      <h1>Seus sistemas,<br>em um só lugar.</h1>
-      <p>Selecione o painel que deseja acessar.</p>
+      <div class="hero-text">
+        <div class="hero-eyebrow">Expresso Unir</div>
+        <h1>Seus sistemas,<br><em>em um só lugar.</em></h1>
+        <p>Selecione o painel que deseja acessar.</p>
+      </div>
+      <div class="hero-bus">
+        <img src="onibus.png" alt="Ônibus Expresso Unir" />
+      </div>
     </div>
 
     <!-- DISPONÍVEIS -->
