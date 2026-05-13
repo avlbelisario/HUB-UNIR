@@ -10,9 +10,7 @@
       --laranja: #E8820C;
       --roxo: #2E2A6E;
       --cinza: #9A9A9A;
-      --cinza-claro: #F4F4F6;
       --branco: #FFFFFF;
-      --card-hover-shadow: 0 20px 60px rgba(46,42,110,0.18);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,7 +23,7 @@
       overflow-x: hidden;
     }
 
-    /* ── BACKGROUND ── */
+    /* BACKGROUND */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -45,7 +43,7 @@
       background-size: 48px 48px;
     }
 
-    /* ── WRAPPER ── */
+    /* WRAPPER */
     .wrapper {
       position: relative;
       z-index: 1;
@@ -54,103 +52,95 @@
       padding: 0 32px 80px;
     }
 
-    /* ── HEADER ── */
+    /* HEADER */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 40px 0 0;
-      flex-wrap: wrap;
-      gap: 24px;
+      padding: 36px 0 0;
     }
-
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 14px;
     }
-
-    .logo-img {
-      height: 64px;
-      filter: brightness(0) invert(1) opacity(0.95);
-      animation: fadeDown 0.7s ease both;
+    .logo-area img {
+      height: 52px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(232,130,12,0.4));
     }
-
-    .divider-v {
-      width: 2px;
-      height: 40px;
-      background: rgba(255,255,255,0.15);
-      animation: fadeDown 0.7s 0.1s ease both;
-    }
-
-    .hub-title {
+    .logo-area .hub-name {
       font-family: 'Syne', sans-serif;
       font-size: 1.6rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: -0.5px;
       color: #fff;
-      animation: fadeDown 0.7s 0.15s ease both;
     }
-    .hub-title span { color: var(--laranja); }
-
+    .logo-area .hub-name span {
+      color: var(--laranja);
+    }
     .badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(232,130,12,0.15);
+      border: 1px solid rgba(232,130,12,0.35);
+      color: var(--laranja);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    /* HERO */
+    .hero {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 100px;
-      padding: 8px 18px;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.55);
-      text-transform: uppercase;
-      animation: fadeDown 0.7s 0.2s ease both;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 64px 0 48px;
     }
-    .badge::before {
-      content: '';
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--laranja);
-      box-shadow: 0 0 6px var(--laranja);
-      animation: pulse 2s infinite;
+    .hero-text {
+      flex: 1;
     }
-
-    /* ── HERO TEXT ── */
-    .hero {
-      padding: 70px 0 56px;
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
-    .hero h1 {
+    .hero-text h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 800;
       line-height: 1.1;
-      max-width: 640px;
+      margin-bottom: 16px;
     }
-    .hero h1 em {
+    .hero-text h1 em {
       font-style: normal;
       color: var(--laranja);
     }
-    .hero p {
-      margin-top: 18px;
+    .hero-text p {
       font-size: 1rem;
-      color: rgba(255,255,255,0.45);
-      max-width: 420px;
+      color: rgba(255,255,255,0.55);
       line-height: 1.6;
+      max-width: 480px;
+    }
+    .hero-img {
+      flex: 0 0 auto;
+      width: clamp(180px, 28vw, 320px);
+      opacity: 0.85;
+      filter: drop-shadow(0 12px 32px rgba(232,130,12,0.25));
+    }
+    .hero-img img {
+      width: 100%;
+      height: auto;
     }
 
-    /* ── SECTION LABEL ── */
+    /* SECTION LABEL */
     .section-label {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 28px;
-      animation: fadeUp 0.8s 0.4s ease both;
     }
     .section-label span {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.35);
     }
@@ -158,157 +148,126 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.07);
     }
 
-    /* ── GRID ── */
+    /* GRID */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
-      animation: fadeUp 0.9s 0.5s ease both;
     }
 
-    /* ── CARD ── */
+    /* CARD */
     .card {
       position: relative;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 20px;
-      padding: 32px 28px 28px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      padding: 28px 24px 24px;
       text-decoration: none;
-      color: inherit;
-      display: block;
-      overflow: hidden;
+      color: #fff;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
     }
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      background: linear-gradient(135deg, rgba(232,130,12,0.08), rgba(46,42,110,0.12));
-    }
-    .card:hover {
+    .card:not(.card--coming):hover {
       transform: translateY(-6px);
-      box-shadow: var(--card-hover-shadow);
-      border-color: rgba(232,130,12,0.3);
+      box-shadow: 0 20px 60px rgba(46,42,110,0.35);
+      border-color: rgba(232,130,12,0.4);
       background: rgba(255,255,255,0.07);
     }
-    .card:hover::before { opacity: 1; }
-
     .card--coming {
-      cursor: default;
       opacity: 0.45;
+      cursor: default;
     }
-    .card--coming:hover {
-      transform: none;
-      box-shadow: none;
-      border-color: rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-    }
-    .card--coming::before { display: none; }
 
+    /* CARD ICON */
     .card-icon {
-      width: 52px; height: 52px;
+      font-size: 2rem;
+      width: 52px;
+      height: 52px;
       border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      font-size: 1.6rem;
-      transition: transform 0.3s ease;
+      margin-bottom: 4px;
     }
-    .card:hover .card-icon { transform: scale(1.1); }
+    .card-icon--diesel  { background: rgba(232,130,12,0.15); }
+    .card-icon--ipk     { background: rgba(46,42,110,0.35); }
+    .card-icon--dre     { background: rgba(34,197,94,0.12); }
+    .card-icon--supply  { background: rgba(99,102,241,0.15); }
+    .card-icon--rh      { background: rgba(236,72,153,0.12); }
+    .card-icon--manut   { background: rgba(251,191,36,0.12); }
 
-    .card-icon--diesel  { background: linear-gradient(135deg, #E8820C22, #E8820C55); }
-    .card-icon--ipk     { background: linear-gradient(135deg, #2E2A6E22, #2E2A6E55); }
-    .card-icon--dre     { background: linear-gradient(135deg, #1a6e4022, #1a6e4055); }
-    .card-icon--supply  { background: linear-gradient(135deg, #6e1a1a22, #6e1a1a55); }
-    .card-icon--rh      { background: linear-gradient(135deg, #1a4e6e22, #1a4e6e55); }
-    .card-icon--manut   { background: linear-gradient(135deg, #4e6e1a22, #4e6e1a55); }
-
+    /* CARD TAG */
     .card-tag {
-      display: inline-block;
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 3px 10px;
+      padding: 4px 10px;
       border-radius: 100px;
-      margin-bottom: 10px;
     }
-    .card-tag--live    { background: rgba(232,130,12,0.15); color: var(--laranja); }
-    .card-tag--soon    { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3); }
+    .card-tag--live {
+      background: rgba(34,197,94,0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34,197,94,0.3);
+    }
+    .card-tag--soon {
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
 
     .card-name {
       font-family: 'Syne', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      margin-bottom: 8px;
-      color: #fff;
     }
-
     .card-desc {
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.5);
       line-height: 1.5;
     }
-
     .card-arrow {
-      position: absolute;
-      bottom: 24px;
-      right: 24px;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: rgba(232,130,12,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      transition: background 0.3s, transform 0.3s;
+      margin-top: auto;
+      padding-top: 12px;
+      font-size: 1.1rem;
+      color: var(--laranja);
+      opacity: 0;
+      transition: opacity 0.2s ease;
     }
     .card:not(.card--coming):hover .card-arrow {
-      background: var(--laranja);
-      transform: translate(3px, -3px);
+      opacity: 1;
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       margin-top: 72px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.06);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      animation: fadeUp 0.9s 0.6s ease both;
-    }
-    footer p {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.22);
-      letter-spacing: 0.04em;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 28px;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.8rem;
     }
     footer img {
-      height: 28px;
-      filter: brightness(0) invert(1) opacity(0.2);
+      height: 32px;
+      opacity: 0.5;
+      filter: grayscale(1);
     }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeDown {
-      from { opacity:0; transform: translateY(-16px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
-    @keyframes fadeUp {
-      from { opacity:0; transform: translateY(20px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0%,100% { opacity:1; }
-      50%      { opacity:0.35; }
+    @media (max-width: 640px) {
+      .hero { flex-direction: column; }
+      .hero-img { width: 70%; margin: 0 auto; }
+      header { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
 </head>
@@ -322,24 +281,29 @@
   <!-- HEADER -->
   <header>
     <div class="logo-area">
-      <img class="logo-img" src="LOGO_UNIR_5.png" alt="Logo Unir" />
-      <div class="divider-v"></div>
-      <div class="hub-title">Hub <span>Unir</span></div>
+      <img src="LOGO_UNIR_5.png" alt="Unir" />
+      <div class="hub-name">Hub <span>Unir</span></div>
     </div>
-    <div class="badge">Central de sistemas</div>
+    <span class="badge">Central de sistemas</span>
   </header>
 
   <!-- HERO -->
   <div class="hero">
-    <h1>Todos os seus sistemas,<br /><em>em um só lugar.</em></h1>
-    <p>Acesse rapidamente cada plataforma da Expresso Unir. Clique no sistema desejado para ser direcionado.</p>
+    <div class="hero-text">
+      <h1>Sistemas internos<br><em>Expresso Unir</em></h1>
+      <p>Clique no sistema desejado para ser direcionado.</p>
+    </div>
+    <div class="hero-img">
+      <img src="onibus.png" alt="Ônibus Expresso Unir" />
+    </div>
   </div>
 
-  <!-- CARDS ATIVOS -->
+  <!-- LABEL -->
   <div class="section-label">
     <span>Sistemas disponíveis</span>
   </div>
 
+  <!-- CARDS -->
   <div class="grid">
 
     <!-- Diesel -->
