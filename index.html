@@ -218,6 +218,11 @@
       border: 1px solid rgba(255,255,255,0.08);
     }
 
+    .card-active--passageiros {
+      background: linear-gradient(135deg, #2E2A6E 0%, #3D3888 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
     /* decoração geométrica interna */
     .card-deco {
       position: absolute;
@@ -535,7 +540,35 @@
         <div class="card-active-arrow">↗</div>
       </a>
 
-    </div>
+      <!-- Card Passageiros -->
+      <a class="card-active card-active--passageiros" href="https://expressounir.github.io/Passageiros-Unir/" target="_blank" rel="noopener">
+        <div class="card-deco"></div>
+        <div class="card-deco-2"></div>
+        <div class="card-line">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="100" x2="400" y2="100" stroke="#fff" stroke-width="1" opacity="0.06"/>
+            <line x1="200" y1="0" x2="200" y2="200" stroke="#fff" stroke-width="1" opacity="0.06"/>
+            <line x1="0" y1="0" x2="400" y2="200" stroke="#fff" stroke-width="1" opacity="0.04"/>
+          </svg>
+        </div>
+        <div class="card-active-inner">
+          <div class="card-icon-wrap">
+            <!-- ícone: pessoas/passageiros -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+              <path d="M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+          <span class="card-active-tag">Ativo</span>
+          <div class="card-active-name">Passageiros</div>
+          <div class="card-active-desc">Acompanhamento e análise de passageiros transportados pela frota.</div>
+        </div>
+        <div class="card-active-arrow">↗</div>
+      </a>
+
+    </div><!-- fim grid-active -->
 
     <div class="section-label"><span>Em breve</span></div>
     <div class="grid-coming">
